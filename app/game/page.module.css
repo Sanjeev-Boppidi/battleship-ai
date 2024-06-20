@@ -1,0 +1,68 @@
+/* app/game/page.module.css */
+.gameBoard {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  gap: 5px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: #f0f0f0;
+}
+
+.cell.S {
+  background-color: lightgray;
+}
+
+.cell.X {
+  background-color: red;
+}
+
+.cell.O {
+  background-color: blue;
+}
+
+.cell.miss {
+  background-color: yellow;
+}
+
+.cell.hit {
+  background-color: orange;
+}
+
+.cell.sunk {
+  background-color: black;
+}
+
+.cell.hover {
+  background-color: lightblue; /* Highlight color for hover cells */
+}
+
+.cell.placed {
+  background-color: black; /* Color for placed ships */
+}
+
+.controls {
+  margin: 20px;
+  text-align: center;
+}
+
+.controls button {
+  margin: 5px;
+  padding: 10px;
+}
