@@ -278,3 +278,25 @@
 .gitlink:hover {
   text-decoration: underline;
 }
+
+
+.legend {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: 10px 20px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.legendColor {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: none;
+}

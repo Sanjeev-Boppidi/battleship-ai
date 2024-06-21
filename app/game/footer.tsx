@@ -7,8 +7,7 @@ const Footer: React.FC = () => {
          <p>
                 <a href="http://localhost:3000" target="_blank" rel="noopener ">
                     Battleship AI
-                </a> 
-                by Sanjeev Boppidi
+                </a> by Sanjeev Boppidi
             </p>
     </footer>
     );

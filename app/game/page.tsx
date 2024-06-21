@@ -198,8 +198,8 @@ const GameBoard: React.FC = () => {
         <button className={styles.rotateButton} onClick={toggleShipDirection}>
           Rotate Ship
         </button>
+        
         <br />
-        <br /><br />
       </div>
       
       )}
@@ -268,6 +268,26 @@ const GameBoard: React.FC = () => {
           <button onClick={startGame} className={styles.startButton}>Start Game</button>
         )}
       </div>
+      {!placingShips &&(
+      <div className={styles.legend}>
+        <div className={styles.legendItem}>
+          <div className={`${styles.legendColor} ${styles.empty}`}></div>
+          <span>Empty</span>
+        </div>
+        <div className={styles.legendItem}>
+          <div className={`${styles.legendColor} ${styles.hit}`}></div>
+          <span>Hit</span>
+        </div>
+        <div className={styles.legendItem}>
+          <div className={`${styles.legendColor} ${styles.miss}`}></div>
+          <span>Miss</span>
+        </div>
+        <div className={styles.legendItem}>
+          <div className={`${styles.legendColor} ${styles.sunk}`}></div>
+          <span>Sunk</span>
+        </div>
+      </div>
+      )}
       <Footer />
     </div>
     
