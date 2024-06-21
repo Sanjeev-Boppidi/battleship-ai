@@ -21,7 +21,7 @@ DIRECTIONS = {'up': (-1, 0), 'down': (1, 0), 'left': (0, -1), 'right': (0, 1)}
 OPPOSITE_DIRECTION = {'up': 'down', 'down': 'up', 'left': 'right', 'right': 'left'}
 NEXT_DIRECTION = {'right': 'left', 'left': 'up', 'up': 'down', 'down': 'right'}
 
-# Initial state
+
 mode = HUNT_MODE
 target_queue = []
 hit_list = []
@@ -30,9 +30,12 @@ first_hit = None
 last_hit = None
 tried_opposite = False
 
-# Player and AI boards
-player_board = [['' for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
-ai_board = [['' for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
+def create_empty_board():
+    return [['' for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
+
+
+player_board = create_empty_board()
+ai_board = create_empty_board()
 
 # Store ship positions
 player_ships = {}
@@ -41,8 +44,7 @@ ai_ships = {}
 player_ships_sunk = 0
 ai_ships_sunk = 0
 
-def create_empty_board():
-    return [['' for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
+
 
 def can_place_ship(board, ship_length, row, col, direction):
     if direction == 'H':
@@ -197,7 +199,6 @@ def ai_move():
                     direction = None
         if not direction:
             if not target_queue:
-                # Skip to next hit cell if the current ship is sunk
                 while hit_list:
                     next_hit = hit_list.pop(0)
                     if any(player_board[r][c] == 'P' for r, c, _ in get_adjacent_cells(*next_hit)):
@@ -226,7 +227,6 @@ def ai_move():
                 if is_ship_sunk(positions, player_board):
                     mark_ship_as_sunk(positions, player_board)
                     player_ships_sunk += 1
-                    # Remove all sunk ship positions from the hit_list
                     for pos in positions:
                         if pos in hit_list:
                             hit_list.remove(pos)

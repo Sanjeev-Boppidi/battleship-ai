@@ -187,7 +187,7 @@ const GameBoard: React.FC = () => {
               onClick={() => setSelectedShip(ship)}
               className={`${styles.shipButton} ${selectedShip === ship ? styles.selectedShip : ''}`}
               style={{
-                width: `${SHIPS[ship] * 40}px`, // Assuming each cell is 40px wide
+                width: `${SHIPS[ship] * 40}px`,
               }}
             >
               {ship}
