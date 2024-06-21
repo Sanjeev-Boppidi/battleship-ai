@@ -6,9 +6,9 @@ import Footer from './game/footer';
 export default function Home() {
   return (
     <div>
-      <Header />
+
       <GameBoard />
-      <Footer />
+
     </div>
   );
 }

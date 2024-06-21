@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './page.module.css';
+import 'react-bootstrap';
+import Header from './header';
+import Footer from './footer';
 
 const BOARD_SIZE = 10;
 const SHIPS: { [key: string]: number } = {
@@ -162,17 +165,21 @@ const GameBoard: React.FC = () => {
 
   return (
     <div>
+      <Header />
       {winner && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
-            {winnerModal(winner)}
+            {winnerModal("Player")}
+            <br />
             <button onClick={() => window.location.reload()} className={styles.closeButton}>Play Again</button>
           </div>
         </div>
       )}
+      {placingShips && (
       <div className={styles.controls}>
-        <h2>Place your ships</h2>
-        
+        <div className=''>
+          <h1>Select your ship</h1>
+        </div>
         <div>
           {availableShips.map(ship => (
             <button
@@ -187,12 +194,19 @@ const GameBoard: React.FC = () => {
             </button>
           ))}
         </div>
-        <button onClick={toggleShipDirection}>
+        <br />
+        <button className={styles.rotateButton} onClick={toggleShipDirection}>
           Rotate Ship
         </button>
+        <br />
+        <br /><br />
       </div>
+      
+      )}
+      
       <div className={styles.gameBoard}>
-        
+        <div>
+          <h1 className={styles.fleet}>Your Fleet</h1>
         <div className={styles.board}>
           {playerBoard.map((row, rowIndex) =>
             row.map((cell, colIndex) => {
@@ -210,26 +224,29 @@ const GameBoard: React.FC = () => {
             })
           )}
         </div>
+        </div>
         <div className={styles.board}>
-        {placingShips && (
-          <div className={styles.instructionsContainer}>
-          <div className={styles.instructions}>
-            <p>Instructions:</p>
-            <ol>
-              <li>1. Select a ship by clicking on its button.</li>
-              <li>2. Click on the board to place the ship.</li>
-              <li>3. Once all ships are placed, click "Start Game" to begin.</li>
-              <li>4. Click on the cells of the enemy's map to find and destroy all five enemy ships.</li>
-              
-              <li>5. The computer will fire on your ships immediately after you fire on its ships.</li>
-              <li>6. The game ends when all ships on one side are sunk.</li>
-            </ol>
-          </div>
-          </div>
-        )}
+          {placingShips && (
+            <div className={styles.instructionsContainer}>
+              <div className={styles.instructions}>
+                <p>Instructions:</p>
+                <ol>
+                  <li>1. Select a ship by clicking on its button.</li>
+                  <li>2. Click on the board to place the ship.</li>
+                  <li>3. Once all ships are placed, click "Start Game" to begin.</li>
+                  <li>4. Click on the cells of the enemy's map to find and destroy all five enemy ships.</li>
+                  <li>5. The computer will fire on your ships immediately after you fire on its ships.</li>
+                  <li>6. The game ends when all ships on one side are sunk.</li>
+                </ol>
+              </div>
+            </div>
+          )}
         </div>
         {!placingShips && (
+          <div>
+            <h1 className={styles.fleet} >Enemy Fleet</h1>
           <div className={styles.board}>
+            
             {aiBoard.map((row, rowIndex) =>
               row.map((cell, colIndex) => {
                 const isClickable = cell === '';
@@ -243,14 +260,17 @@ const GameBoard: React.FC = () => {
               })
             )}
           </div>
+          </div>
         )}
       </div>
       <div className={styles.controls}>
-      <button onClick={startGame} className={styles.startButton}>Start Game</button>
+        {availableShips.length === 0 && placingShips && (
+          <button onClick={startGame} className={styles.startButton}>Start Game</button>
+        )}
       </div>
-      <div className='padd'></div>
+      <Footer />
     </div>
-
+    
   );
 };
 
